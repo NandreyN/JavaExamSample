@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Guards>
+    <Guard>
+        <Name>John</Name>
+        <Job>Guard 1</Job>
+        <Salary>100</Salary>
+        <SecuredObject>Meat Depot</SecuredObject>
+    </Guard>
+
+    <Guard>
+        <Name>Vasiliy</Name>
+        <Job>Guard 1</Job>
+        <Salary>50</Salary>
+        <SecuredObject>Vodka Factory</SecuredObject>
+    </Guard>
+
+    <Guard>
+        <Name>Ivan</Name>
+        <Job>Guard 2</Job>
+        <Salary>800</Salary>
+        <SecuredObject>Bear Trainer</SecuredObject>
+    </Guard>
+
+    <Guard>
+        <Name>Ostap</Name>
+        <Job>Guard 2</Job>
+        <Salary>600</Salary>
+        <SecuredObject>Balalaika Player</SecuredObject>
+    </Guard>
+
+    <Guard>
+        <Name>Alex</Name>
+        <Job>Parasite</Job>
+        <Salary>10</Salary>
+        <SecuredObject>None</SecuredObject>
+    </Guard>
+
+    <Guard>
+        <Name>Mark</Name>
+        <Job>Parasite</Job>
+        <Salary>-20</Salary>
+        <SecuredObject>HZ</SecuredObject>
+    </Guard>
+</Guards>
