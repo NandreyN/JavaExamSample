@@ -21,6 +21,28 @@
         <SecuredObject>Bear Trainer</SecuredObject>
     </Guard>
 
+    <Cleaner>
+        <Name>Tatiana</Name>
+        <Job>Cleaner 1</Job>
+        <Salary>150</Salary>
+        <RoomsCleaned>20</RoomsCleaned>
+    </Cleaner>
+
+    <Cleaner>
+        <Name>Vika</Name>
+        <Job>Cleaner 2</Job>
+        <Salary>250</Salary>
+        <RoomsCleaned>25</RoomsCleaned>
+    </Cleaner>
+
+    <Cleaner>
+        <Name>Rita</Name>
+        <Job>Cleaner 1</Job>
+        <Salary>155</Salary>
+        <RoomsCleaned>20</RoomsCleaned>
+    </Cleaner>
+
+
     <Guard>
         <Name>Ostap</Name>
         <Job>Guard 2</Job>

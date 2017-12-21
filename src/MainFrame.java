@@ -44,6 +44,7 @@ public class MainFrame extends JFrame {
         /*sortKeys.add(new RowSorter.SortKey(1, SortOrder.ASCENDING));
         sortKeys.add(new RowSorter.SortKey(2, SortOrder.DESCENDING));*/
         rowSorter.setSortable(3,false);
+        rowSorter.setSortable(4,false);
         rowSorter.setComparator(2, new Comparator<String>() {
 
             @Override
@@ -88,7 +89,8 @@ public class MainFrame extends JFrame {
                         tableModel.update(handler.getGuards());
                         splitPane.setDividerLocation(0.5);
 
-                        outLabel.setText(tableModel.getMinSalaryInfo().toString());
+                        outLabel.setText("<html>"+tableModel.getJobs().toString() + "<br>" +
+                                tableModel.getMinSalaryInfo().toString() + "</html>");
                     } catch (ParserConfigurationException | SAXException | IOException e1) {
                         e1.printStackTrace();
                     }

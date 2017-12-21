@@ -10,7 +10,8 @@ import java.util.StringTokenizer;
 
 public class XMLInputHandler extends DefaultHandler{
     private List<Employee> guards;
-    private Guard currEmployee;
+
+    private Employee currEmployee;
 
     private String currentTag;
     @Override
@@ -25,6 +26,10 @@ public class XMLInputHandler extends DefaultHandler{
         if (currentTag.equals("guard"))
         {
             currEmployee = new Guard();
+        }
+        else if (currentTag.equals("cleaner"))
+        {
+            currEmployee = new Cleaner();
         }
     }
 
@@ -41,14 +46,17 @@ public class XMLInputHandler extends DefaultHandler{
                 currEmployee.setSalary(new String(ch, start,length));
                 break;
             case "securedobject":
-                currEmployee.setSecuredObject(new String(ch, start,length));
+                ((Guard)currEmployee).setSecuredObject(new String(ch, start,length));
+                break;
+            case "roomscleaned":
+                ((Cleaner)currEmployee).setRoomsCleaned(Integer.parseInt(new String(ch,start, length)));
                 break;
         }
     }
 
     @Override
     public void endElement(String namespaceURI, String localName, String qName) throws SAXException {
-        if (qName.toLowerCase().equals("guard")) {
+        if (qName.toLowerCase().equals("guard") || qName.toLowerCase().equals("cleaner")) {
             guards.add(currEmployee);
         }
         currentTag = "";

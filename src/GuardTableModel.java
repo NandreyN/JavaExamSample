@@ -4,11 +4,12 @@ import java.util.*;
 public class GuardTableModel extends AbstractTableModel {
     private List<Employee> guards;
     private Map<String, String> salaries;
+    private Set<String> jobs;
 
-    private static final String[] HEADERS = {"Name", "Job", "Salary", "Secured Object"};
+    private static final String[] HEADERS = {"Name", "Job", "Salary", "Secured Object", "Rooms cleaned"};
 
     public GuardTableModel(List<Employee> guards) {
-        this.guards = new ArrayList<Employee>(guards);
+        this.guards = new ArrayList<>(guards);
     }
 
     public void update(List<Employee> guards) {
@@ -28,19 +29,17 @@ public class GuardTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 4;
+        return 5;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
+        Object ret = "";
         if (rowIndex >= guards.size())
-            return "??";
+            return ret;
 
         Employee guard = guards.get(rowIndex);
-        if (!(guard instanceof Guard))
-            return "??";
 
-        Object ret = "??";
         switch (columnIndex) {
             case 0:
                 ret = guard.getName();
@@ -52,7 +51,12 @@ public class GuardTableModel extends AbstractTableModel {
                 ret = guard.getSalary();
                 break;
             case 3:
-                ret = ((Guard) guard).getSecuredObject();
+                if (guard instanceof Guard)
+                    ret = ((Guard) guard).getSecuredObject();
+                break;
+            case 4:
+                if (guard instanceof Cleaner)
+                    ret = String.valueOf(((Cleaner) guard).getRoomsCleaned());
                 break;
         }
         return ret;
@@ -65,17 +69,30 @@ public class GuardTableModel extends AbstractTableModel {
 
 
     public Map<String, String> getMinSalaryInfo() {
-        salaries = new HashMap<String, String>();
-        guards.stream().forEach(x -> {
+        salaries = new HashMap<>();
+        guards.forEach(x -> {
                     if (!salaries.containsKey(x.getJob())) {
                         salaries.put(x.getJob(), x.getSalary());
-                    }
-                    else
-                        if (new Integer(x.getSalary()).compareTo(new Integer(salaries.get(x.getJob()))) < 0)
-                            salaries.put(x.getJob(),x.getSalary());
+                    } else if (new Integer(x.getSalary()).compareTo(new Integer(salaries.get(x.getJob()))) < 0)
+                        salaries.put(x.getJob(), x.getSalary());
                 }
         );
 
         return salaries;
+    }
+
+    public Set<String> getJobs() {
+        jobs = new TreeSet<>();
+        if (salaries != null) {
+            for (Map.Entry<String, String> entry : salaries.entrySet())
+                jobs.add(entry.getKey());
+            return jobs;
+        }
+
+
+        guards.forEach(x -> {
+            jobs.add(x.getJob());
+        });
+        return jobs;
     }
 }
